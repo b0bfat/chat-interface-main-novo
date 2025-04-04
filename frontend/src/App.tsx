@@ -40,7 +40,7 @@ function App() {
     }));
 
     try {
-      const response = await fetch('/api/chat', {
+      const response = await fetch('/chat', {
         method: 'POST',
         body: formData,
       });

@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --mercedes-silver: #242424;
+    --mercedes-black: #000000;
+  }
+  
+  body {
+    @apply bg-gradient-to-br from-zinc-900 to-black text-gray-100;
+  }
+}
