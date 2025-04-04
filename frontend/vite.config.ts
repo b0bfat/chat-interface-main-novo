@@ -1,24 +1,17 @@
+// vite.config.js
+
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
-  optimizeDeps: {
-    exclude: ['lucide-react'],
-  },
   server: {
     proxy: {
-      '/api': {
-        target: 'http://192.168.143.21:5000',
+      '/chat': {
+        target: 'http://192.168.151.231:1234', // Endereço e porta do LMStudio
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '')
-      }
-    }
+        rewrite: (path) => path.replace(/^\/chat/, '/v1/chat/completions'), // Redireciona para o endpoint correto
+      },
+    },
   },
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './src')
-    }
-  }
 });
