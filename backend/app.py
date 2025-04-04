@@ -1,8 +1,8 @@
 from flask import Flask, request, jsonify, render_template
+from flask_cors import CORS
 import requests
 import os
 from werkzeug.utils import secure_filename
-from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
@@ -23,6 +23,11 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@app.route('/')
+def index():
+    app.logger.info("Rota '/' acessada, renderizando index.html")
+    return render_template('index.html')
 
 @app.route('/chat', methods=['POST', 'OPTIONS'])
 def chat():
